@@ -33,7 +33,7 @@ void main() {
     diffuse = light_color * dot_product;
 
     // Calculate specular light
-    vec3 reflection_direction = normalize((2.0 * dot_product * v_position) - light_direction);
+    vec3 reflection_direction = reflect(-light_direction, v_normal);
     vec3 view_direction = normalize(camera_position - v_position);
     float dot_product2 = max(dot(reflection_direction, view_direction), 0.0);
 

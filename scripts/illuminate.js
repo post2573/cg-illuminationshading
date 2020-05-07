@@ -117,7 +117,6 @@ class GlApp {
         for (let i = 0; i < this.scene.models.length; i ++) {
             // NOTE: you need to properly select shader here
             let selected_shader = 'gouraud_color';
-            console.log(selected_shader);
 
             this.gl.useProgram(this.shader[selected_shader].program);
 
@@ -136,11 +135,15 @@ class GlApp {
             this.gl.uniformMatrix4fv(this.shader[selected_shader].uniform.model_matrix, false, this.model_matrix);
 
             this.gl.uniform3fv(this.shader[selected_shader].uniform.camera_position, this.scene.camera.position);
-            this.gl.uniform1f(this.shader[selected_shader].uniform.material_shininess, this.scene.models[i].material_shininess);
+            this.gl.uniform1f(this.shader[selected_shader].uniform.material_shininess, this.scene.models[i].material.shininess);
 
             this.gl.uniform3fv(this.shader[selected_shader].uniform.light_ambient, this.scene.light.ambient);
             this.gl.uniform3fv(this.shader[selected_shader].uniform.light_position, this.scene.light.point_lights[0].position);
             this.gl.uniform3fv(this.shader[selected_shader].uniform.light_color, this.scene.light.point_lights[0].color);
+            this.gl.uniform3fv(this.shader[selected_shader].uniform.material_specular, this.scene.models[i].material.specular);
+
+            console.log(this.scene.models[i].material);
+
             //upload more data
 
             this.gl.bindVertexArray(this.vertex_array[this.scene.models[i].type]);

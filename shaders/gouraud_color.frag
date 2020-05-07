@@ -21,5 +21,5 @@ void main() {
     vec3 final_color = final_ambient + final_diffuse + final_specular;
 
 
-    FragColor = vec4(final_ambient + final_diffuse + final_specular, 1.0);
+    FragColor = vec4(final_color, 1.0);
 }
