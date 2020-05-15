@@ -6,9 +6,10 @@ in vec3 vertex_position;
 in vec3 vertex_normal;
 in vec2 vertex_texcoord;
 
+uniform int num_of_lights;
 uniform vec3 light_ambient;
-uniform vec3 light_position;
-uniform vec3 light_color;
+uniform vec3 light_position[10];
+uniform vec3 light_color[10];
 uniform vec3 camera_position;
 uniform float material_shininess;
 uniform vec2 texture_scale;
@@ -28,18 +29,20 @@ void main() {
     // Calculate ambient light
     ambient = vec3(light_ambient);
 
-    // Calculate diffuse light
     vec3 v_position = vec3(model_matrix * vec4(vertex_position, 1.0));
     vec3 v_normal = normalize(vec3(inverse(transpose(mat3(model_matrix))) * vertex_normal));
-    vec3 light_direction = normalize(light_position - v_position);
-    float dot_product = max(dot(v_normal, light_direction), 0.0);
 
-    diffuse = light_color * dot_product;
+    for(int i = 0; i < num_of_lights; i++) {
+      //diffuse
+      vec3 light_direction = normalize(light_position[i] - v_position);
+      float dot_product = max(dot(v_normal, light_direction), 0.0);
+      diffuse += light_color[i] * dot_product;
 
-    // Calculate specular light
-    vec3 reflection_direction = reflect(-light_direction, v_normal);
-    vec3 view_direction = normalize(camera_position - v_position);
-    float dot_product2 = max(dot(reflection_direction, view_direction), 0.0);
+      //specular
+      vec3 reflection_direction = reflect(-light_direction, v_normal);
+      vec3 view_direction = normalize(camera_position - v_position);
+      float dot_product2 = max(dot(reflection_direction, view_direction), 0.0);
+      specular += light_color[i] * pow(dot_product2, material_shininess);
+    }
 
-    specular = light_color * pow(dot_product2, material_shininess);
 }

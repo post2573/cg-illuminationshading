@@ -28,12 +28,12 @@ void main() {
     vec3 v_normal = normalize(vec3(inverse(transpose(mat3(model_matrix))) * vertex_normal));
 
 
-    //for each light, calculate ambient, diffuse, and specular
+    //for each light, calculate diffuse and specular
     for(int i = 0; i < num_of_lights; i++) {
       //diffuse
       vec3 light_direction = normalize(light_position[i] - v_position);
       float dot_product = max(dot(v_normal, light_direction), 0.0);
-      diffuse = diffuse + (light_color[i] * dot_product);
+      diffuse += (light_color[i] * dot_product);
 
       //specular
       vec3 reflection_direction = reflect(-light_direction, v_normal);

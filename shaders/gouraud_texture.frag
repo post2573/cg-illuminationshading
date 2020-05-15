@@ -19,5 +19,10 @@ void main() {
     vec4 final_specular = vec4(specular * material_specular, 1.0);
 
     vec4 color = final_ambient + final_diffuse + final_specular;
+
+    color.x = min(color.x, 1.0);
+    color.y = min(color.y, 1.0);
+    color.z = min(color.z, 1.0);
+
     FragColor = color * texture(image, frag_texcoord);
 }

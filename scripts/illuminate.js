@@ -186,7 +186,6 @@ class GlApp {
             this.gl.uniform3fv(this.shader[selected_shader].uniform["light_position[0]"], new Float32Array(light_positions));
             this.gl.uniform3fv(this.shader[selected_shader].uniform["light_color[0]"], new Float32Array(light_colors));
 
-
             //Upload texture uniforms????
             if(scene.models[i].shader === 'texture') {
               var sampler_uniform = this.gl.getUniformLocation(this.shader[selected_shader].program, "image");

@@ -24,9 +24,9 @@
                     models: [
                         {
                             type: 'plane',
-                            shader: 'color',
+                            shader: 'texture',
                             material: {
-                                color: glMatrix.vec3.fromValues(0.7, 0.1, 0.1),  // red, green, blue
+                                color: glMatrix.vec3.fromValues(1.0, 1.0, 1.0),  // red, green, blue
                                 specular: glMatrix.vec3.fromValues(0.0, 0.0, 0.0),  // red, green, blue
                                 shininess: 1
                             },
@@ -36,15 +36,15 @@
                             rotate_y: 0,
                             rotate_z: 0,
                             texture: {
-                              url: 'images/Checkered.jpg',
-                              scale: glMatrix.vec2.fromValues(4, 4)
+                              url: 'images/Wallpaper.jpg',
+                              scale: glMatrix.vec2.fromValues(2, 2)
                             }
                         },
                         {
                             type: 'sphere',
-                            shader: 'color',
+                            shader: 'texture',
                             material: {
-                                color: glMatrix.vec3.fromValues(0.0, 0.0, 1.0),  // red, green, blue
+                                color: glMatrix.vec3.fromValues(1.0, 1.0, 1.0),  // red, green, blue
                                 specular: glMatrix.vec3.fromValues(1.0, 1.0, 1.0),  // red, green, blue
                                 shininess: 32
                             },
@@ -54,13 +54,13 @@
                             rotate_y: 0,
                             rotate_z: 0,
                             texture: {
-                              url: 'images/World_Map.jpg',
+                              url: 'images/Earth.png',
                               scale: glMatrix.vec2.fromValues(1, 1)
                             }
                         }
                     ],
                     light: {
-                        ambient: glMatrix.vec3.fromValues(0.2, 0.2, 0.2),  // red, green, blue
+                        ambient: glMatrix.vec3.fromValues(0.1, 0.1, 0.1),  // red, green, blue
                         point_lights: [
                             {
                                 position: glMatrix.vec3.fromValues(1.5, 3.0, -4.5),  // x, y, z
